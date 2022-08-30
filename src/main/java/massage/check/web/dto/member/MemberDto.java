@@ -10,6 +10,7 @@ import massage.check.domain.member.Member;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 public class MemberDto {
 
@@ -61,9 +62,26 @@ public class MemberDto {
      * 인증된 사용자 정보를 세션에 저장하기 위한 클래스
      * 세션에 저장하기 위해 직렬화
      */
-    public static class ResponseDto {
-        public ResponseDto(Member member){
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ResponseDto implements Serializable {
 
+        private Long id;
+        private String username;
+        private String nickname;
+        private String email;
+        private Role role;
+        private String updateDate;
+
+        /*Entity -> Dto*/
+        public ResponseDto(Member member){
+            this.id = member.getId();
+            this.username = member.getUsername();
+            this.nickname = member.getNickname();
+            this.email = member.getEmail();
+            this.role = member.getRole();
+            this.updateDate = member.getUpdatedDate();
         }
     }
 }

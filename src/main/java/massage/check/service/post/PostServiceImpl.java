@@ -75,7 +75,7 @@ public class PostServiceImpl implements PostService{
         return postPageList;
     }
 
-    /*페이징 정보 반환 */
+    /*페이징 정보 반환 타임리프 프론트에서 관리하는 것을 여기서 다정리해서 나가는것*/
     @Override
     public PageVo getPageInfo(Page<PostDto.ResponsePageDto> postPageList, int pageNo) {
         int totalPage = postPageList.getTotalPages();
@@ -90,7 +90,7 @@ public class PostServiceImpl implements PostService{
         return new PageVo(totalPage, startNumber,endNumber,hasPrev,hasNext);
     }
 
-    /*post_id로 Post객체를 찾아 PostDto.ResponseDto로 반환*/
+    /*post_id로 Post객체를 찾아 PostDto.ResponseDto로 반환  상세보기할때 씀*/
     @Override
     public PostDto.ResponseDto findById(Long post_id) {
         Post post = postRepository.findById(post_id).orElseThrow(() ->
